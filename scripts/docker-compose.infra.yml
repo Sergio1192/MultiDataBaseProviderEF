@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  SqlServer:
+    image: mcr.microsoft.com/mssql/server
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "P@ssw0rd"
+    ports:
+      - "1433:1433"
+
+  MySql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "P@ssw0rd"
+    ports:
+      - "3306:3306"
+
+  Postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "P@ssw0rd"
+    ports:
+      - "5432:5432"
+
+  Oracle:
+    image: gvenzl/oracle-xe:21.3.0-slim-faststart
+    environment:
+      ORACLE_PASSWORD: "$P@ssw0rd"
+    ports:
+      - "1521:1521"
