@@ -5,7 +5,7 @@ namespace MultiDataBaseProvider.Infraestructure.Providers.Contexts;
 
 public class OracleDbContext : MyDbContext
 {
-    public OracleDbContext(DbContextOptions<MySqlDbContext> options)
+    public OracleDbContext(DbContextOptions<OracleDbContext> options)
         : base(options) { }
 }
 

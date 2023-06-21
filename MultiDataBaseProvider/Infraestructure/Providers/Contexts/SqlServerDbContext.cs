@@ -5,7 +5,7 @@ namespace MultiDataBaseProvider.Infraestructure.Providers.Contexts;
 
 public class SqlServerDbContext : MyDbContext
 {
-    public SqlServerDbContext(DbContextOptions<MySqlDbContext> options)
+    public SqlServerDbContext(DbContextOptions<SqlServerDbContext> options)
         : base(options) { }
 }
 

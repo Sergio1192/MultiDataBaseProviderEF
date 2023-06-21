@@ -6,7 +6,7 @@ namespace MultiDataBaseProvider.Domain.Entities;
 
 public class WeatherForecast : EntityBase
 {
-    public required DateOnly Date { get; set; }
+    public required DateTime Date { get; set; }
 
     public required string City { get; set; }
 
