@@ -27,6 +27,6 @@ services:
   Oracle:
     image: gvenzl/oracle-xe:21.3.0-slim-faststart
     environment:
-      ORACLE_PASSWORD: "$P@ssw0rd"
+      ORACLE_PWD: "$P@ssw0rd"
     ports:
       - "1521:1521"

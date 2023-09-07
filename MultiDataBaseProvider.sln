@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiDataBaseProvider", "MultiDataBaseProvider\MultiDataBaseProvider.csproj", "{BA21AAE2-8355-4D88-A42D-C36B104C2791}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiDataBaseProvider", "src\MultiDataBaseProvider\MultiDataBaseProvider.csproj", "{BA21AAE2-8355-4D88-A42D-C36B104C2791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiDataBaseProvider.IntegrationTests", "tests\MultiDataBaseProvider.IntegrationTests\MultiDataBaseProvider.IntegrationTests.csproj", "{041135A0-CFB3-4ECF-BA78-6131F45F6D8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BA21AAE2-8355-4D88-A42D-C36B104C2791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA21AAE2-8355-4D88-A42D-C36B104C2791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA21AAE2-8355-4D88-A42D-C36B104C2791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{041135A0-CFB3-4ECF-BA78-6131F45F6D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041135A0-CFB3-4ECF-BA78-6131F45F6D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041135A0-CFB3-4ECF-BA78-6131F45F6D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041135A0-CFB3-4ECF-BA78-6131F45F6D8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
