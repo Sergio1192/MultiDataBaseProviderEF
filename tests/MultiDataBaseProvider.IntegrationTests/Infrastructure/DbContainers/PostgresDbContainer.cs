@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MultiDataBaseProvider.Infraestructure.Providers.Contexts;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 using Respawn;

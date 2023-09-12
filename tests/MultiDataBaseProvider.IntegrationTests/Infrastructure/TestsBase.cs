@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MultiDataBaseProvider.Domain;
 using System.Linq.Expressions;
@@ -35,7 +34,6 @@ public abstract class TestsBase : IAsyncLifetime
         where TController : class
     {
         var response = await SendResponseAsync(actionSelector);
-        await response.IsSuccessStatusCodeOrThrow();
 
         var result = await response.Content.ReadAsStringAsync();
 
@@ -55,7 +53,7 @@ public abstract class TestsBase : IAsyncLifetime
        where TController : class
         => SendResponseAsync<TController, object>(actionSelector);
 
-    private async Task<HttpResponseMessage> SendResponseAsync<TController, TResponse>(Expression<Func<TController, TResponse>> actionSelector)
+    private async Task<HttpResponseMessage> SendResponseAsync<TController, TResponse>(Expression<Func<TController, TResponse>> actionSelector, bool checkResponse = true)
         where TController : class
     {
         var request = Server.CreateHttpApiRequest(actionSelector);
@@ -83,6 +81,11 @@ public abstract class TestsBase : IAsyncLifetime
         else
         {
             response = await request.GetAsync();
+        }
+
+        if (checkResponse)
+        {
+            await response.IsSuccessStatusCodeOrThrow();
         }
 
         return response;

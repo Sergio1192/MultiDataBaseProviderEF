@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MultiDataBaseProvider.Domain;
 
 namespace MultiDataBaseProvider.IntegrationTests.Infrastructure;
@@ -16,6 +15,9 @@ public class Given
 
     public Task<T[]> AddRangeAsync<T>(IEnumerable<T> values) where T : class
         => ActionInContext<T, T[]>(values.ToArray(), dbSet => dbSet.AddRangeAsync);
+
+    public Task<TResult> Data<TEntity, TResult>(Func<MyDbContext, DbSet<TEntity>> getDbSet, Func<DbSet<TEntity>, Task<TResult>> func) where TEntity : class
+        => DbContextExecuteAsync(getDbSet, (_, dbSet) => func(dbSet));
 
     private Task<T> ActionInContext<TEntity, T>(T data, Func<DbSet<TEntity>, Func<T, Task>> action) where TEntity : class
         => DbContextExecuteAsync(

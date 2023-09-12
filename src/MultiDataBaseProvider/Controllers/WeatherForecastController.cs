@@ -39,11 +39,11 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpPut("{id:Guid}")]
-    public async Task Update([FromRoute] Guid id, DateTime day, int temperature)
+    public async Task Update([FromRoute] Guid id, string city, int temperature)
     {
         WeatherForecast entity = await context.WeatherForecasts
             .FirstAsync(e => e.Id == id);
-        entity.Date = day;
+        entity.City = city;
         entity.Temperature = temperature;
 
         await context.SaveChangesAsync();

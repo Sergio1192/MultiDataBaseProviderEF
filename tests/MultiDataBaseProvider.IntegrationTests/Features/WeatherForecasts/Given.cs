@@ -1,6 +1,4 @@
-﻿using MultiDataBaseProvider.Domain.Entities;
-
-namespace MultiDataBaseProvider.IntegrationTests.Infrastructure;
+﻿namespace MultiDataBaseProvider.IntegrationTests.Infrastructure;
 
 internal static class GivenExtensions
 {

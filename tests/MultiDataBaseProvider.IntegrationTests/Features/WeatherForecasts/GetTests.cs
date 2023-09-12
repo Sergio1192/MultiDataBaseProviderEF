@@ -1,6 +1,3 @@
-using MultiDataBaseProvider.Controllers;
-using MultiDataBaseProvider.Domain.Entities;
-
 namespace MultiDataBaseProvider.IntegrationTests.Features.WeatherForecasts;
 
 public class GetTests : TestsBase
@@ -14,7 +11,7 @@ public class GetTests : TestsBase
         );
 
     [Fact]
-    public async Task Get_wheather_forecast_return_the_elements_in_db()
+    public async Task Get_wheather_forecasts_return_the_elements_in_db()
     {
         var data = await Server.Given().WheatherForecastsAsync(5);
 

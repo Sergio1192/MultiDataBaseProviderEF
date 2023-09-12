@@ -1,5 +1,4 @@
 ﻿using DotNet.Testcontainers.Containers;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MultiDataBaseProvider.Domain;
