@@ -15,6 +15,6 @@ internal static class GivenExtensions
         {
             City = Guid.NewGuid().ToString(),
             Temperature = Random.Shared.Next(0, 100),
-            Date = DateTime.Now.AddDays(Random.Shared.Next(-100, 100))
+            Date = DateTime.Today.AddDays(Random.Shared.Next(-100, 100))
         };
 }
