@@ -13,7 +13,7 @@ public class OracleDbContainer : DbContainer
     protected override OracleContainer GetContainer() => container;
 
     protected override string GetConnectionString()
-        => container.GetConnectionString().Replace($"User Id={OracleBuilder.DefaultUsername}", "User Id=system");
+        => container.GetConnectionString();
 
     public override IDbAdapter GetDbAdapter()
         => DbAdapter.Oracle;
@@ -26,5 +26,8 @@ public class OracleDbContainer : DbContainer
                 .MigrationsAssembly(typeof(OracleDbContext).Assembly.FullName)
                 .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)
         );
+
+    public override string[] GetSchemasToInclude()
+        => new[] { OracleBuilder.DefaultUsername.ToUpper() };
 }
 

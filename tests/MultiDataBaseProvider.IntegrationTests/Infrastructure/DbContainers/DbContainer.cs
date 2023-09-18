@@ -15,6 +15,9 @@ public abstract class DbContainer
     public abstract IDbAdapter GetDbAdapter();
     public abstract IServiceCollection AddDbContext(IServiceCollection services);
 
+    public virtual string[] GetSchemasToInclude()
+        => Array.Empty<string>();
+
     public virtual Task StartAsync(CancellationToken ct = default)
         => GetContainer().StartAsync(ct);
 

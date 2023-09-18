@@ -71,6 +71,7 @@ public class ApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
         Respawner = await Respawner.CreateAsync(connection, new RespawnerOptions
         {
             TablesToIgnore = TablesToIgnore,
+            SchemasToInclude = DbContainer.GetSchemasToInclude(),
             DbAdapter = DbContainer.GetDbAdapter()
         });
     }
