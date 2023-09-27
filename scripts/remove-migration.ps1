@@ -12,7 +12,7 @@ function migration
     )
 
     Write-Output "Removing migration for $provider"
-    dotnet ef migrations remove --startup-project ..\MultiDataBaseProvider --project ..\MultiDataBaseProvider --context "$($provider)DbContext" --no-build --force -- --Provider $provider --connectionStrings:Default $connectionString
+    dotnet ef migrations remove --startup-project ..\src\MultiDataBaseProvider --project ..\src\MultiDataBaseProvider --context "$($provider)DbContext" --no-build --force -- --Provider $provider --connectionStrings:Default $connectionString
 }
 
 if ($revert)
@@ -20,7 +20,7 @@ if ($revert)
     $migration = Read-Host -Prompt "Revert to migration"
 
     Write-Output "Reverting database for SqlServer provider"
-    dotnet ef database update $migration --startup-project ..\MultiDataBaseProvider --project ..\src\MultiDataBaseProvider --context "SqlServerDbContext" --configuration Release
+    dotnet ef database update $migration --startup-project ..\src\MultiDataBaseProvider --project ..\src\MultiDataBaseProvider --context "SqlServerDbContext" --configuration Release
 }
 
 migration "SqlServer"

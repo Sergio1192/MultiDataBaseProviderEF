@@ -16,7 +16,7 @@ function migration
 
     Write-Output "Migration for $provider"
 
-    dotnet ef migrations add $message.Replace(" ", "") --startup-project ..\MultiDataBaseProvider --project ..\MultiDataBaseProvider --context "$($provider)DbContext" --output-dir Migrations/$provider --configuration Release -- --Provider $provider --connectionStrings:Default $connectionString
+    dotnet ef migrations add $message.Replace(" ", "") --startup-project ..\src\MultiDataBaseProvider --project ..\src\MultiDataBaseProvider --context "$($provider)DbContext" --output-dir Migrations/$provider --configuration Release -- --Provider $provider --connectionStrings:Default $connectionString
 }
 
 migration $message "SqlServer"
