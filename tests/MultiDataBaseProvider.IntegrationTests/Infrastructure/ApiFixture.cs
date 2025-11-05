@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MultiDataBaseProvider.Domain;
 using MultiDataBaseProvider.Extensions;
+using MultiDataBaseProvider.Infraestructure.Providers;
 using MultiDataBaseProvider.IntegrationTests.Infrastructure.DbContainers;
 using Respawn;
 using Respawn.Graph;
@@ -23,6 +25,17 @@ public class ApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
     protected override IWebHostBuilder CreateWebHostBuilder()
         => WebHost
             .CreateDefaultBuilder()
+            .ConfigureAppConfiguration((context, config) =>
+            {
+                var provider = Environment.GetEnvironmentVariable(nameof(Provider));
+                if (provider is null)
+                {
+                    config.AddInMemoryCollection(new Dictionary<string, string?>
+                    {
+                        [nameof(Provider)] = TestConstants.DEFAULT_PROVIDER.ToString()
+                    });
+                }
+            })
             .UseEnvironment("Testing")
             .UseTestServer()
             .Configure(app => app

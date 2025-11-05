@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MultiDataBaseProvider.Domain;
 using MultiDataBaseProvider.Infraestructure.Providers;
 using Respawn;
-using System.Diagnostics;
 
 namespace MultiDataBaseProvider.IntegrationTests.Infrastructure.DbContainers;
 
@@ -40,9 +39,8 @@ public abstract class DbContainer
 
     public static DbContainer Create(IConfiguration configuration)
     {
-        var provider = configuration.GetValue(nameof(Provider), Provider.SqlServer);
-        Debug.WriteLine($"[Database Provider] {provider}");
-        Console.WriteLine($"[Database Provider] {provider}");
+        var provider = configuration.GetValue<Provider>(nameof(Provider));
+
         DbContainer dbContainer = provider switch
         {
             Provider.SqlServer => new SqlServerDbContainer(),
