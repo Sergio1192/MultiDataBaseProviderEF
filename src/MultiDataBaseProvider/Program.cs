@@ -28,7 +28,7 @@ app.MapControllers();
 await app.Services
     .MigrateDbContextAsync();
 
-app.Run();
+await app.RunAsync();
 
 // Remove static class or protected constructor warning
 #pragma warning disable S1118

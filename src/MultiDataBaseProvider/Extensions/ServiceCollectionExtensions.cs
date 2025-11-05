@@ -63,8 +63,8 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration,
         Func<DbContextOptionsBuilder, Func<string, Action<TOptionsBuilder>, DbContextOptionsBuilder>> dbContextOptionsBuilderAction,
-        Action<TOptionsBuilder> optionsBuilderAction)
-        where TContextImplementation : MyDbContext
+        Action<TOptionsBuilder> optionsBuilderAction
+    ) where TContextImplementation : MyDbContext
         => services
             .AddDbContext<MyDbContext, TContextImplementation>((serviceProvider, options) =>
             {

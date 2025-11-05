@@ -3,9 +3,7 @@ using MultiDataBaseProvider.Domain;
 
 namespace MultiDataBaseProvider.Infraestructure.Providers.Contexts;
 
-public class OracleDbContext : MyDbContext
-{
-    public OracleDbContext(DbContextOptions<OracleDbContext> options)
-        : base(options) { }
-}
+public class OracleDbContext(DbContextOptions<OracleDbContext> options)
+    : MyDbContext(options)
+{ }
 

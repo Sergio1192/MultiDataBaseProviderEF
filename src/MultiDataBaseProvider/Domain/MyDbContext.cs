@@ -3,10 +3,9 @@ using MultiDataBaseProvider.Domain.Entities;
 
 namespace MultiDataBaseProvider.Domain;
 
-public abstract class MyDbContext : DbContext
+public abstract class MyDbContext(DbContextOptions options)
+    : DbContext(options)
 {
-    protected MyDbContext(DbContextOptions options) : base(options) { }
-
     public DbSet<WeatherForecast> WeatherForecasts { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

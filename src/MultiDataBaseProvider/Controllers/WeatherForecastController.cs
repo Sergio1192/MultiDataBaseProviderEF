@@ -7,15 +7,8 @@ namespace MultiDataBaseProvider.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController(MyDbContext context) : ControllerBase
 {
-    private readonly MyDbContext context;
-
-    public WeatherForecastController(MyDbContext context)
-    {
-        this.context = context;
-    }
-
     [HttpGet]
     public async Task<IEnumerable<WeatherForecast>> Get()
         => await context.WeatherForecasts
