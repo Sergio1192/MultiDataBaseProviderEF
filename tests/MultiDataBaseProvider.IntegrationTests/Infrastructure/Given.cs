@@ -3,18 +3,13 @@ using MultiDataBaseProvider.Domain;
 
 namespace MultiDataBaseProvider.IntegrationTests.Infrastructure;
 
-public class Given
+public class Given(TestServer server)
 {
-    private readonly TestServer server;
-
-    public Given(TestServer server)
-        => this.server = server;
-
     public Task<T> AddAsync<T>(T value) where T : class
         => ActionInContext<T, T>(value, dbSet => async data => await dbSet.AddAsync(data));
 
     public Task<T[]> AddRangeAsync<T>(IEnumerable<T> values) where T : class
-        => ActionInContext<T, T[]>(values.ToArray(), dbSet => dbSet.AddRangeAsync);
+        => ActionInContext<T, T[]>([.. values], dbSet => dbSet.AddRangeAsync);
 
     public Task<TResult> Data<TEntity, TResult>(Func<MyDbContext, DbSet<TEntity>> getDbSet, Func<DbSet<TEntity>, Task<TResult>> func) where TEntity : class
         => DbContextExecuteAsync(getDbSet, (_, dbSet) => func(dbSet));

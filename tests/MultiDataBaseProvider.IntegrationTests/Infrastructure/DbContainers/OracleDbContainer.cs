@@ -28,6 +28,6 @@ public class OracleDbContainer : DbContainer
         );
 
     public override string[] GetSchemasToInclude()
-        => new[] { OracleBuilder.DefaultUsername.ToUpper() };
+        => [OracleBuilder.DefaultUsername.ToUpper()];
 }
 

@@ -18,10 +18,9 @@ public class ApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
     private DbContainer DbContainer => Services.GetRequiredService<DbContainer>();
     public Respawner Respawner { get; private set; } = default!;
 
-    private readonly Table[] TablesToIgnore = new Table[]
-    {
+    private readonly Table[] TablesToIgnore = [
         "__EFMigrationsHistory"
-    };
+    ];
 
     protected override IWebHostBuilder CreateWebHostBuilder()
         => WebHost
@@ -65,7 +64,7 @@ public class ApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
         using var scope = Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
         using var context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
 
-        context.Database.OpenConnection();
+        await context.Database.OpenConnectionAsync();
         using var connection = context.Database.GetDbConnection();
 
         Respawner = await Respawner.CreateAsync(connection, new RespawnerOptions
@@ -74,6 +73,8 @@ public class ApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
             SchemasToInclude = DbContainer.GetSchemasToInclude(),
             DbAdapter = DbContainer.GetDbAdapter()
         });
+
+        await context.Database.CloseConnectionAsync();
     }
 
     Task IAsyncLifetime.DisposeAsync()

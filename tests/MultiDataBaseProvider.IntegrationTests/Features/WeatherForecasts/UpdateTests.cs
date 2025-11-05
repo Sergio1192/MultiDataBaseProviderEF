@@ -1,18 +1,16 @@
 namespace MultiDataBaseProvider.IntegrationTests.Features.WeatherForecasts;
 
-public class UpdateTests : TestsBase
+public class UpdateTests(ApiFixture fixture)
+    : TestsBase(fixture)
 {
-    public UpdateTests(ApiFixture fixture)
-        : base(fixture) { }
-
     private record Request(string City = "", int Temperature = 0)
     {
         public static Request GetRandom()
             => new(Guid.NewGuid().ToString(), new Random().Next(-20, 50));
     }
 
-    private Task UpdateAsync(Guid id, Request request)
-        => SendResponseAsync<WeatherForecastController>(
+    private async Task UpdateAsync(Guid id, Request request)
+        => await SendResponseAsync<WeatherForecastController>(
             controller => controller.Update(id, request.City, request.Temperature)
         );
 

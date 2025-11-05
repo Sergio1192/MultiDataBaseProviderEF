@@ -1,12 +1,10 @@
 namespace MultiDataBaseProvider.IntegrationTests.Features.WeatherForecasts;
 
-public class DeleteTests : TestsBase
+public class DeleteTests(ApiFixture fixture)
+    : TestsBase(fixture)
 {
-    public DeleteTests(ApiFixture fixture)
-        : base(fixture) { }
-
-    private Task DeleteAsync(Guid id)
-        => SendResponseAsync<WeatherForecastController>(
+    private async Task DeleteAsync(Guid id)
+        => await SendResponseAsync<WeatherForecastController>(
             controller => controller.Delete(id)
         );
 

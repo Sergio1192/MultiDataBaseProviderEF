@@ -8,15 +8,15 @@ using System.Text.Json;
 namespace MultiDataBaseProvider.IntegrationTests.Infrastructure;
 
 [Collection(nameof(ApiCollection))]
-public abstract class TestsBase : IAsyncLifetime
+public abstract class TestsBase(ApiFixture fixture) : IAsyncLifetime
 {
-    private readonly ApiFixture fixture;
+    private readonly static JsonSerializerOptions jsonSerializerOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
 
     protected TestServer Server { get => fixture.Server; }
     protected IServiceProvider Services { get => fixture.Services; }
-
-    protected TestsBase(ApiFixture fixture)
-        => this.fixture = fixture ?? throw new ArgumentNullException(nameof(fixture));
 
     public Task InitializeAsync() => ResetDatabase();
 
@@ -43,10 +43,7 @@ public abstract class TestsBase : IAsyncLifetime
         if (typeof(TResponse) == typeof(string))
             result = $"\"{result}\"";
 
-        return JsonSerializer.Deserialize<TResponse>(result, new JsonSerializerOptions()
-        {
-            PropertyNameCaseInsensitive = true
-        })!;
+        return JsonSerializer.Deserialize<TResponse>(result, jsonSerializerOptions)!;
     }
 
     protected Task<HttpResponseMessage> SendResponseAsync<TController>(Expression<Func<TController, object>> actionSelector)
@@ -96,11 +93,11 @@ public abstract class TestsBase : IAsyncLifetime
         using var scope = Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
         using var context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
 
-        context.Database.OpenConnection();
+        await context.Database.OpenConnectionAsync();
         using var connection = context.Database.GetDbConnection();
 
         await fixture.Respawner.ResetAsync(connection);
 
-        context.Database.CloseConnection();
+        await context.Database.CloseConnectionAsync();
     }
 }

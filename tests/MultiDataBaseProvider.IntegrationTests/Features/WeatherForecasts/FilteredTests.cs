@@ -1,10 +1,8 @@
 namespace MultiDataBaseProvider.IntegrationTests.Features.WeatherForecasts;
 
-public class FilteredTests : TestsBase
+public class FilteredTests(ApiFixture fixture)
+    : TestsBase(fixture)
 {
-    public FilteredTests(ApiFixture fixture)
-        : base(fixture) { }
-
     private Task<IEnumerable<WeatherForecast>> GetAsync(string city)
         => GetResultAsync<WeatherForecastController, IEnumerable<WeatherForecast>>(
             controller => controller.Filtered(city)

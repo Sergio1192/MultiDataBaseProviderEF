@@ -1,10 +1,8 @@
 namespace MultiDataBaseProvider.IntegrationTests.Features.WeatherForecasts;
 
-public class GetByIdTests : TestsBase
+public class GetByIdTests(ApiFixture fixture)
+    : TestsBase(fixture)
 {
-    public GetByIdTests(ApiFixture fixture)
-        : base(fixture) { }
-
     private Task<WeatherForecast> GetAsync(Guid id)
         => GetResultAsync<WeatherForecastController, WeatherForecast>(
             controller => controller.Get(id)
