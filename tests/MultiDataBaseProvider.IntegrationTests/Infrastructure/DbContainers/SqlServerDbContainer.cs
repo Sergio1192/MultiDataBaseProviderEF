@@ -8,7 +8,7 @@ namespace MultiDataBaseProvider.IntegrationTests.Infrastructure.DbContainers;
 
 public class SqlServerDbContainer : DbContainer
 {
-    private readonly MsSqlContainer container = new MsSqlBuilder().Build();
+    private static readonly MsSqlContainer container = new MsSqlBuilder().Build();
 
     protected override MsSqlContainer GetContainer() => container;
 

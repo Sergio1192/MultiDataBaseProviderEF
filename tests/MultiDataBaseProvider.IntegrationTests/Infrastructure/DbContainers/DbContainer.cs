@@ -39,7 +39,7 @@ public abstract class DbContainer
 
     public static DbContainer Create(IConfiguration configuration)
     {
-        var provider = configuration.GetValue<Provider>(nameof(Provider));
+        var provider = configuration.GetValue(nameof(Provider), Provider.SqlServer);
         DbContainer dbContainer = provider switch
         {
             Provider.SqlServer => new SqlServerDbContainer(),

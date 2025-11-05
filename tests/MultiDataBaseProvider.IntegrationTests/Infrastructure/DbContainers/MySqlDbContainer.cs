@@ -8,7 +8,7 @@ namespace MultiDataBaseProvider.IntegrationTests.Infrastructure.DbContainers;
 
 public class MySqlDbContainer : DbContainer
 {
-    private readonly MySqlContainer container = new MySqlBuilder()
+    private static readonly MySqlContainer container = new MySqlBuilder()
         .WithDatabase("InsureTest")
         .Build();
 

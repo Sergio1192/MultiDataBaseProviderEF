@@ -8,7 +8,7 @@ namespace MultiDataBaseProvider.IntegrationTests.Infrastructure.DbContainers;
 
 public class PostgresDbContainer : DbContainer
 {
-    private readonly PostgreSqlContainer container = new PostgreSqlBuilder().Build();
+    private static readonly PostgreSqlContainer container = new PostgreSqlBuilder().Build();
 
     protected override PostgreSqlContainer GetContainer() => container;
 

@@ -8,7 +8,7 @@ namespace MultiDataBaseProvider.IntegrationTests.Infrastructure.DbContainers;
 
 public class OracleDbContainer : DbContainer
 {
-    private readonly OracleContainer container = new OracleBuilder().Build();
+    private static readonly OracleContainer container = new OracleBuilder().Build();
 
     protected override OracleContainer GetContainer() => container;
 
