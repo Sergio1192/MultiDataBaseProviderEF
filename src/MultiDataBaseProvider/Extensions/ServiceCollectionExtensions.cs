@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
 
     private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
-        var provider = configuration.GetValue<Provider>(nameof(Provider));
+        var provider = configuration.GetValue<Provider>(nameof(Provider), Provider.SqlServer);
 
         _ = provider switch
         {
