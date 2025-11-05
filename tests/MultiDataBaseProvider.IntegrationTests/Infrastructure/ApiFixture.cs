@@ -32,7 +32,7 @@ public class ApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
                 {
                     config.AddInMemoryCollection(new Dictionary<string, string?>
                     {
-                        [nameof(Provider)] = Provider.SqlServer.ToString()
+                        [nameof(Provider)] = TestConstants.DEFAULT_PROVIDER
                     });
                 }
             })
